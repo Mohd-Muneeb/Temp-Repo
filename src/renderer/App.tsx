@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import * as io from 'socket.io-client';
+import { getDoc, doc } from '@firebase/firestore';
 import 'tailwindcss/tailwind.css';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import SimplePeer from 'simple-peer';
@@ -7,7 +8,6 @@ import Webcam from 'react-webcam';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from './configs';
 import Login from './Login';
-import { collection, getDoc, doc } from '@firebase/firestore';
 
 const socket = io.connect('https://vidapp.ssh.surf');
 
@@ -128,11 +128,7 @@ function App() {
   };
 
   if (loading) {
-    return (
-      <>
-        <h1>Loading...</h1>
-      </>
-    );
+    return <h1>Loading...</h1>;
   }
 
   if (user) {
@@ -185,11 +181,12 @@ function App() {
                   playsInline
                   ref={userVideo}
                   autoPlay
-                  className='rounded-md'
+                  className="rounded-md"
                   style={{ width: '500px' }}
                 />
-              ) : <div className='bg-black w-[300px] h-[200px]'>
-                </div>}
+              ) : (
+                <div className="bg-black w-[300px] h-[200px]"></div>
+              )}
             </div>
           </div>
 
