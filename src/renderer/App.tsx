@@ -254,9 +254,7 @@ function App() {
                 )}
               </div>
             </div>
-          ) : (
-            <></>
-          )}
+          ) : null}
           <div>
             {RecievingCall && !CallAccepted ? (
               <div className="caller flex gap-4 items-center justify-center">
